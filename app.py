@@ -8,45 +8,60 @@ st.set_page_config(page_title="Myth Generator", layout="centered")
 # ---------- START CONTAINER with Scoped Styling ----------
 st.markdown("""
     <style>
-    .main-container {
-        background-color: #505081;
-        padding: 2rem;
-        border-radius: 12px;
+    html, body, .stApp {
+        background-color: #505081 !important;
+        color: #ffffff !important;
     }
+
+    .main-container {
+        padding: 2rem;
+    }
+
+    /* Main heading style */
     .title {
         font-size: 32px;
         font-weight: 700;
         text-align: center;
-        color: #272757;
+        color: #f1f1f1;
         margin-bottom: 10px;
     }
+
     .subtitle {
         font-size: 18px;
         text-align: center;
-        color: #57606f;
+        color: #d3d3e3;
         margin-bottom: 30px;
     }
+
     .story-box {
         background-color: #8686AC;
         padding: 25px;
         border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         line-height: 1.6;
         overflow-y: auto;
         max-height: 500px;
         white-space: pre-wrap;
-        color: #272757;
+        color: #ffffff;
+        font-size: 16px;
     }
+
     .footer {
         text-align: center;
         font-size: 14px;
-        color: #7f8c8d;
+        color: #cccccc;
         margin-top: 40px;
+    }
+   
+    button[kind="primary"] {
+        background-color: #6c63ff !important;
+        color: white !important;
+        border-radius: 8px;
     }
     </style>
 
     <div class="main-container">
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # ---------- CONTENT ----------
 st.markdown('<div class="title">📚 Myth Generator using OpenRouter AI</div>', unsafe_allow_html=True)
