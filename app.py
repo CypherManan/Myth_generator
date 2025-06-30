@@ -9,8 +9,8 @@ st.set_page_config(page_title="Myth Generator", layout="centered")
 st.markdown("""
     <style>
     html, body, .stApp {
-        background-color: #505081 !important;
-        color: #ffffff !important;
+        background-color: #272757 !important;
+        color: #505081 !important;
     }
 
     .main-container {
@@ -22,7 +22,7 @@ st.markdown("""
         font-size: 32px;
         font-weight: 700;
         text-align: center;
-        color: #f1f1f1;
+        color: #505081;
         margin-bottom: 10px;
     }
 
@@ -42,20 +42,20 @@ st.markdown("""
         overflow-y: auto;
         max-height: 500px;
         white-space: pre-wrap;
-        color: #ffffff;
+        color: #272757;
         font-size: 16px;
     }
 
     .footer {
         text-align: center;
         font-size: 14px;
-        color: #cccccc;
+        color: #d3d3e3;
         margin-top: 40px;
     }
    
     button[kind="primary"] {
-        background-color: #6c63ff !important;
-        color: white !important;
+        background-color: #8686ac !important;
+        color: 0f0e47 !important;
         border-radius: 8px;
     }
     </style>
