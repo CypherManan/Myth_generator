@@ -17,7 +17,7 @@ st.markdown("""
         font-size: 32px;
         font-weight: 700;
         text-align: center;
-        color: #2c3e50;
+        color: #272757;
         margin-bottom: 10px;
     }
     .subtitle {
@@ -35,7 +35,7 @@ st.markdown("""
         overflow-y: auto;
         max-height: 500px;
         white-space: pre-wrap;
-        color: #2d3436;
+        color: #272757;
     }
     .footer {
         text-align: center;
