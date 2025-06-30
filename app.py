@@ -74,10 +74,21 @@ generate = st.button("🔮 Generate Myth")
 if generate and country:
     with st.spinner("Summoning ancient stories..."):
         prompt = f"""
-        Generate a culturally grounded folk tale from {country}.
-        Theme: {theme if theme else 'a traditional cultural motif'}.
-        Include a title, characters, setting, conflict, resolution, and moral.
-        300–500 words, authentic tone.
+        You are a skilled cultural storyteller and historian. Craft a vivid, authentic folk tale from the region of {country}.
+        If possible, subtly weave in real cultural, geographic, or mythological elements from that place.
+
+        Theme: {theme if theme else "a timeless traditional motif"}.
+
+        The story should:
+        - Feel like it's passed down orally through generations.
+        - Include a meaningful title.
+        - Feature named characters rooted in the region's traditions.
+        - Describe a setting that evokes the local environment or time period.
+        - Contain a conflict, a gentle arc, and a memorable resolution.
+        - End with a short moral, wisdom, or proverb-like reflection.
+
+        Style: Smooth, immersive, poetic in tone but easy to understand — like a tale heard under moonlight.
+        Length: 350–500 words.
         """
 
         try:
@@ -113,6 +124,33 @@ if generate and country:
 
 elif generate:
     st.warning("Please enter a country or region.")
+
+# ---------- OPTIONAL AUTHOR NAME ----------
+author = st.text_input("🖋️ Your name (optional)", placeholder="e.g., Arjun, Fatima")
+
+# ---------- DOWNLOAD BUTTON ----------
+if generate and country and "choices" in data:
+    story_text = data["choices"][0]["message"]["content"]
+
+    if author:
+        story_text += f"\n\n~ Written for you by {author}"
+
+    st.download_button(
+        label="📥 Download as .txt",
+        data=story_text,
+        file_name=f"{country.lower().replace(' ', '_')}_myth.txt",
+        mime="text/plain"
+    )
+
+# ---------- BADGE ----------
+st.markdown("""
+    <div style="text-align:center; margin-top: 30px;">
+        <span style="background-color:#8686ac; color:#272757; padding: 6px 16px; border-radius: 12px; font-size:14px;">
+            🌓 Inspired by cultural fantasy
+        </span>
+    </div>
+""", unsafe_allow_html=True)
+
 
 # ---------- FOOTER & CLOSE DIV ----------
 st.markdown('<div class="footer">🔧 Built by Manan · Powered by OpenRouter + Streamlit</div>', unsafe_allow_html=True)
