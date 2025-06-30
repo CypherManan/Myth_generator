@@ -48,29 +48,21 @@ st.markdown("""
     <div class="main-container">
     """, unsafe_allow_html=True)
 
-# ---------- HEADER ----------
-st.markdown('<div class="main-title">📚 Myth Generator using OpenRouter AI</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Craft rich folk tales from cultures around the world ✨</div>', unsafe_allow_html=True)
+# ---------- CONTENT ----------
+st.markdown('<div class="title">📚 Myth Generator using OpenRouter AI</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Craft rich, cultural folk tales with the help of powerful AI ✨</div>', unsafe_allow_html=True)
 
-# ---------- INPUT FIELDS ----------
-country = st.text_input("🌍 Enter a country or region", placeholder="e.g., India, Japan, Greece")
-theme = st.text_input("🎭 Optional: Enter a theme", placeholder="e.g., forest, wisdom, dragons")
+country = st.text_input("🌍 Enter a country or region", placeholder="e.g., Egypt, India, Greece")
+theme = st.text_input("🎭 Optional: Enter a theme", placeholder="e.g., desert, river, tiger")
 generate = st.button("🔮 Generate Myth")
 
-# ---------- STORY GENERATION ----------
 if generate and country:
-    with st.spinner("Summoning ancient legends..."):
+    with st.spinner("Summoning ancient stories..."):
         prompt = f"""
         Generate a culturally grounded folk tale from {country}.
-        Theme: {theme if theme else "a traditional motif"}.
-        Include:
-        - A title
-        - Named characters
-        - Cultural setting
-        - A conflict and resolution
-        - A moral at the end
-
-        Length: 300-500 words.
+        Theme: {theme if theme else 'a traditional cultural motif'}.
+        Include a title, characters, setting, conflict, resolution, and moral.
+        300–500 words, authentic tone.
         """
 
         try:
@@ -78,13 +70,13 @@ if generate and country:
                 "https://openrouter.ai/api/v1/chat/completions",
                 headers={
                     "Authorization": f"Bearer {API_KEY}",
-                    "HTTP-Referer": "https://yourusername-myth-generator.streamlit.app",  # Replace with your deployed URL if you want
-                    "X-Title": "MiniMyth Generator"
+                    "HTTP-Referer": "https://your-deployment-url",  # optional
+                    "X-Title": "Myth Generator"
                 },
                 json={
                     "model": "mistralai/mixtral-8x7b-instruct",
                     "messages": [
-                        {"role": "system", "content": "You are a cultural storyteller."},
+                        {"role": "system", "content": "You are a cultural myth expert."},
                         {"role": "user", "content": prompt}
                     ],
                     "temperature": 0.9,
@@ -93,20 +85,20 @@ if generate and country:
             )
 
             data = response.json()
-
             if "choices" in data:
                 story = data["choices"][0]["message"]["content"]
-                st.markdown("### 📖 Generated Folk Tale")
+                st.markdown("### 📖 Generated Myth")
                 st.markdown(f'<div class="story-box">{story}</div>', unsafe_allow_html=True)
             else:
-                st.error("⚠️ No story generated. Try again later.")
+                st.error("No story returned. Try again.")
                 st.json(data)
 
         except Exception as e:
             st.error(f"API Error: {e}")
 
 elif generate:
-    st.warning("⚠️ Please enter a country or region first.")
+    st.warning("Please enter a country or region.")
 
-# ---------- FOOTER ----------
+# ---------- FOOTER & CLOSE DIV ----------
 st.markdown('<div class="footer">🔧 Built by Manan · Powered by OpenRouter + Streamlit</div>', unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
