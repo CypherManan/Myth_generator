@@ -66,6 +66,14 @@ st.markdown("""
 # ---------- CONTENT ----------
 st.markdown('<div class="title">📚 Myth Generator using OpenRouter AI</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">Craft rich, cultural folk tales with the help of powerful AI ✨</div>', unsafe_allow_html=True)
+# ---------- BADGE ----------
+st.markdown("""
+    <div style="text-align:center; margin-top: 30px;">
+        <span style="background-color:#8686ac; color:#272757; padding: 6px 16px; border-radius: 12px; font-size:14px;">
+            🌓 Inspired by cultural fantasy
+        </span>
+    </div>
+""", unsafe_allow_html=True)
 
 country = st.text_input("🌍 Enter a country or region", placeholder="e.g., Egypt, India, Greece")
 theme = st.text_input("🎭 Optional: Enter a theme", placeholder="e.g., desert, river, tiger")
@@ -142,14 +150,6 @@ if generate and country and "choices" in data:
         mime="text/plain"
     )
 
-# ---------- BADGE ----------
-st.markdown("""
-    <div style="text-align:center; margin-top: 30px;">
-        <span style="background-color:#8686ac; color:#272757; padding: 6px 16px; border-radius: 12px; font-size:14px;">
-            🌓 Inspired by cultural fantasy
-        </span>
-    </div>
-""", unsafe_allow_html=True)
 
 
 # ---------- FOOTER & CLOSE DIV ----------
