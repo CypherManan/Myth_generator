@@ -5,7 +5,7 @@ API_KEY = st.secrets["OPENROUTER_API_KEY"]
 
 st.set_page_config(page_title="Myth Generator", layout="centered")
 
-# ---------- STYLING ----------
+#CSS STYLING
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;800&display=swap');
@@ -77,17 +77,17 @@ st.markdown("""
     <div class="main-container">
 """, unsafe_allow_html=True)
 
-# ---------- HEADER ----------
+#HEADER
 st.markdown('<div class="title">📚 Myth Generator</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">Craft rich, cultural folk tales with the help of powerful AI ✨</div>', unsafe_allow_html=True)
 
-# ---------- INPUT FIELDS ----------
-author = st.text_input("🖋️ Your name (optional)", placeholder="e.g., Arjun, Fatima")
+#INPUT FIELDS
+author = st.text_input("🖋️ Your name (optional)", placeholder="e.g.,Rahul, Jyoti, Arjun")
 country = st.text_input("🌍 Enter a country or region", placeholder="e.g., Egypt, India, Greece")
 theme = st.text_input("🎭 Optional: Enter a theme", placeholder="e.g., desert, river, tiger")
-generate = st.button("🔮 Generate Myth")
+generate = st.button("🔮 Generate Mythic story")
 
-# ---------- GENERATE MYTH ----------
+#GENERATE STORY
 if generate and country:
     with st.spinner("Summoning ancient stories from the mists of time..."):
         prompt = f"""
@@ -153,13 +153,13 @@ if generate and country:
 elif generate:
     st.warning("Please enter a country or region.")
 
-# ---------- BADGE ----------
+#BADGE
 st.markdown("""
     <div class="badge">
         <span>🌓 Inspired by cultural fantasy</span>
     </div>
 """, unsafe_allow_html=True)
 
-# ---------- FOOTER & CLOSE ----------
+#FOOTER & CLOSE
 st.markdown('<div class="footer">🔧 Built by Manan · Powered by OpenRouter + Streamlit</div>', unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)
