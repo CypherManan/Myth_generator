@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Load OpenRouter API key from environment or paste here directly
-API_KEY = os.getenv("OPENROUTER_API_KEY")# Replace with your key if not using .env
+API_KEY = st.secrets["OPENROUTER_API_KEY"]# Replace with your key if not using .env
 
 # Streamlit page setup
 st.set_page_config(page_title="OpenRouter Myth Generator", layout="centered")
