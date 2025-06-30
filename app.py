@@ -2,9 +2,6 @@ import streamlit as st
 import os
 import requests
 
-from dotenv import load_dotenv
-load_dotenv()
-
 # Load OpenRouter API key from environment or paste here directly
 API_KEY = st.secrets["OPENROUTER_API_KEY"]# Replace with your key if not using .env
 
