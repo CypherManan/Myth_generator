@@ -9,7 +9,7 @@ st.set_page_config(page_title="Myth Generator", layout="centered")
 st.markdown("""
     <style>
     .main-container {
-        background-color: #8686AC;
+        background-color: #505081;
         padding: 2rem;
         border-radius: 12px;
     }
@@ -27,7 +27,7 @@ st.markdown("""
         margin-bottom: 30px;
     }
     .story-box {
-        background-color: #505081;
+        background-color: #8686AC;
         padding: 25px;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
