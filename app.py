@@ -1,51 +1,52 @@
 import streamlit as st
 import requests
 
-# Load API key from Streamlit secrets
 API_KEY = st.secrets["OPENROUTER_API_KEY"]
 
-# ---------- PAGE CONFIG ----------
 st.set_page_config(page_title="Myth Generator", layout="centered")
 
-# ---------- CUSTOM CSS ----------
+# ---------- START CONTAINER with Scoped Styling ----------
 st.markdown("""
     <style>
-    html, body, [class*="css"] {
-        background-color: #8686AC !important;
-        font-family: 'Segoe UI', sans-serif;
-        color: #2c3e50;
+    .main-container {
+        background-color: #f4f6f8;
+        padding: 2rem;
+        border-radius: 12px;
     }
-    .main-title {
+    .title {
         font-size: 32px;
         font-weight: 700;
         text-align: center;
-        margin-top: 20px;
+        color: #2c3e50;
         margin-bottom: 10px;
     }
     .subtitle {
         font-size: 18px;
         text-align: center;
-        color: #6c757d;
+        color: #57606f;
         margin-bottom: 30px;
     }
     .story-box {
-        background-color: #505081;
+        background-color: #ffffff;
         padding: 25px;
         border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
         line-height: 1.6;
         overflow-y: auto;
         max-height: 500px;
         white-space: pre-wrap;
+        color: #2d3436;
     }
     .footer {
         text-align: center;
         font-size: 14px;
-        color: #6c757d;
+        color: #7f8c8d;
         margin-top: 40px;
     }
     </style>
-""", unsafe_allow_html=True)
+
+    <div class="main-container">
+    """, unsafe_allow_html=True)
 
 # ---------- HEADER ----------
 st.markdown('<div class="main-title">📚 Myth Generator using OpenRouter AI</div>', unsafe_allow_html=True)
