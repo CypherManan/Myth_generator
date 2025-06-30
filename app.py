@@ -5,22 +5,24 @@ API_KEY = st.secrets["OPENROUTER_API_KEY"]
 
 st.set_page_config(page_title="Myth Generator", layout="centered")
 
-# ---------- START CONTAINER with Scoped Styling ----------
+# ---------- STYLING ----------
 st.markdown("""
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;800&display=swap');
+
     html, body, .stApp {
         background-color: #272757 !important;
         color: #505081 !important;
+        font-family: 'Raleway', sans-serif;
     }
 
     .main-container {
         padding: 2rem;
     }
 
-    /* Main heading style */
     .title {
         font-size: 32px;
-        font-weight: 700;
+        font-weight: 800;
         text-align: center;
         color: #5c5c99;
         margin-bottom: 10px;
@@ -52,29 +54,42 @@ st.markdown("""
         color: #d3d3e3;
         margin-top: 40px;
     }
-   
+
+    .badge {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .badge span {
+        background-color: #8686ac;
+        color: #272757;
+        padding: 6px 16px;
+        border-radius: 12px;
+        font-size: 14px;
+    }
+
     button[kind="primary"] {
         background-color: #8686ac !important;
-        color: 0f0e47 !important;
+        color: #0f0e47 !important;
         border-radius: 8px;
     }
     </style>
-
     <div class="main-container">
 """, unsafe_allow_html=True)
 
-# ---------- CONTENT ----------
-st.markdown('<div class="title">📚 Myth Generator using OpenRouter AI</div>', unsafe_allow_html=True)
+# ---------- HEADER ----------
+st.markdown('<div class="title">📚 Myth Generator</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">Craft rich, cultural folk tales with the help of powerful AI ✨</div>', unsafe_allow_html=True)
 
-# ---------- OPTIONAL AUTHOR NAME ----------
+# ---------- INPUT FIELDS ----------
 author = st.text_input("🖋️ Your name (optional)", placeholder="e.g., Arjun, Fatima")
 country = st.text_input("🌍 Enter a country or region", placeholder="e.g., Egypt, India, Greece")
 theme = st.text_input("🎭 Optional: Enter a theme", placeholder="e.g., desert, river, tiger")
 generate = st.button("🔮 Generate Myth")
 
+# ---------- GENERATE MYTH ----------
 if generate and country:
-    with st.spinner("Summoning ancient stories..."):
+    with st.spinner("Summoning ancient stories from the mists of time..."):
         prompt = f"""
         You are a skilled cultural storyteller and historian. Craft a vivid, authentic folk tale from the region of {country}.
         If possible, subtly weave in real cultural, geographic, or mythological elements from that place.
@@ -98,7 +113,7 @@ if generate and country:
                 "https://openrouter.ai/api/v1/chat/completions",
                 headers={
                     "Authorization": f"Bearer {API_KEY}",
-                    "HTTP-Referer": "https://your-deployment-url",  # optional
+                    "HTTP-Referer": "https://your-deployment-url",
                     "X-Title": "Myth Generator"
                 },
                 json={
@@ -117,6 +132,17 @@ if generate and country:
                 story = data["choices"][0]["message"]["content"]
                 st.markdown("### 📖 Generated Myth")
                 st.markdown(f'<div class="story-box">{story}</div>', unsafe_allow_html=True)
+
+                story_text = story
+                if author:
+                    story_text += f"\n\n~ Written for you by {author}"
+
+                st.download_button(
+                    label="📥 Download as .txt",
+                    data=story_text,
+                    file_name=f"{country.lower().replace(' ', '_')}_myth.txt",
+                    mime="text/plain"
+                )
             else:
                 st.error("No story returned. Try again.")
                 st.json(data)
@@ -127,33 +153,13 @@ if generate and country:
 elif generate:
     st.warning("Please enter a country or region.")
 
-
 # ---------- BADGE ----------
 st.markdown("""
-    <div style="text-align:center; margin-top: 30px;">
-        <span style="background-color:#8686ac; color:#272757; padding: 6px 16px; border-radius: 12px; font-size:14px;">
-            🌓 Inspired by cultural fantasy
-        </span>
+    <div class="badge">
+        <span>🌓 Inspired by cultural fantasy</span>
     </div>
 """, unsafe_allow_html=True)
 
-
-# ---------- DOWNLOAD BUTTON ----------
-if generate and country and "choices" in data:
-    story_text = data["choices"][0]["message"]["content"]
-
-    if author:
-        story_text += f"\n\n~ Written for you by {author}"
-
-    st.download_button(
-        label="📥 Download as .txt",
-        data=story_text,
-        file_name=f"{country.lower().replace(' ', '_')}_myth.txt",
-        mime="text/plain"
-    )
-
-
-
-# ---------- FOOTER & CLOSE DIV ----------
+# ---------- FOOTER & CLOSE ----------
 st.markdown('<div class="footer">🔧 Built by Manan · Powered by OpenRouter + Streamlit</div>', unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)
